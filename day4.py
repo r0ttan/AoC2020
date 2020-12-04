@@ -26,12 +26,10 @@ def solve2(fields, data):
     passcount = 0
     for p in data:
         if all(k in p for k in fields):     # check if all keys in field are present in passport
-            valid = True
             for key in p.keys():
                 if key != 'cid':            # must check this to avoid krasch when compairing with fields key
                     if not re.search(fields[key], p[key]):      #if one key is invalid...
-                        valid = False                           # ...passport is invalid
-                        break                                   # Skip to next passport
+                        break                                   # ...passport is invalid. Skip to next passport
             else:                          # all tests passed
                 passcount += 1      
     return passcount
